@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mandar Deshmukh: My Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Top Nav (like screenshot) -->
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand" href="#home">Mandar Deshmukh: My Portfolio</a>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav__link" href="#education">Education</a>
+          <a class="nav__link" href="#experience">Internships & Experience</a>
+          <a class="nav__link" href="#projects">Projects</a>
+          <a class="nav__link" href="#extras">Extra-curriculars</a>
+          <a class="nav__link" href="#interests">My personal interests</a>
+        </nav>
+      </div>
+      <div class="topbar__rule"></div>
+    </header>
+
+    <main id="home">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero__grid">
+          <div class="hero__text">
+            <h1 class="display">Hey, I’m Mandar</h1>
+            <p class="lead">
+              I’m a CS M.S. student focused on Robotics + Perception—building real-time
+              systems that combine computer vision, learning, and robotics software.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn" href="#projects">View Projects</a>
+              <a class="btn btn--ghost" href="#experience">Experience</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <img
+              class="img img--rounded"
+              src="./assets/hero.jpg"
+              alt="Portrait / hero image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- GOAL (like screenshot: big title on right, image left) -->
+      <section class="split">
+        <div class="container split__grid">
+          <div class="split__media">
+            <img class="img img--rounded" src="./assets/goal.jpg" alt="Goal image" loading="lazy" />
+          </div>
+
+          <div class="split__content">
+            <h2 class="title">My Goal</h2>
+
+            <div class="goal">
+              <h3 class="subtitle">Short Term</h3>
+              <p class="body">
+                Ship robust perception + robotics features in real systems—owning the loop from
+                data → model/algorithm → deployment. I want to contribute to products where
+                reliability, latency, and safety matter.
+              </p>
+            </div>
+
+            <div class="goal goal--spaced">
+              <h3 class="subtitle">Long Term</h3>
+              <p class="body">
+                Build autonomous systems that feel “obviously useful” to humans—grounded in
+                strong software foundations, practical ML, and real-world robotics constraints.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="title title--center">Robotics & Perception Projects</h2>
+
+          <div class="cards">
+            <article class="card">
+              <h3 class="card__title">AutoBot: Autonomous Car Navigation System</h3>
+              <p class="card__desc">
+                Built an autonomous vehicle using LiDAR + ROS2 on Raspberry Pi; sensor fusion,
+                SLAM, planning, and control with end-to-end latency under 100 ms.
+              </p>
+              <a class="card__link" href="#autobot">View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Multi-Modal Robot Learning with Foundation Models</h3>
+              <p class="card__desc">
+                Training transformer-based policies for language-conditioned manipulation in
+                RoboHive with action chunking (in progress).
+              </p>
+              <a class="card__link" href="#foundation">View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Visual SLAM with Object-Aware Mapping</h3>
+              <p class="card__desc">
+                Integrated ORB-SLAM3 + YOLOv8-seg for semantic mapping; ~18 FPS with 3–5 cm
+                localization error.
+              </p>
+              <a class="card__link" href="#vslam">View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">3D Object Detection & Tracking for AVs</h3>
+              <p class="card__desc">
+                YOLOv8 + stereo depth for 3D localization; DeepSORT tracking with strong KITTI metrics.
+              </p>
+              <a class="card__link" href="#3d">View Project</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECT DETAIL (like screenshot: left problem statement, right tools/concepts + bullets + image) -->
+      <section id="autobot" class="project-detail">
+        <div class="container">
+          <div class="project-detail__grid">
+            <div class="project-detail__left">
+              <h2 class="title">AutoBot</h2>
+              <p class="kicker">
+                Problem Statement: Build and deploy an autonomous RC vehicle capable of mapping,
+                localizing, and navigating real-world environments using LiDAR-based SLAM.
+              </p>
+            </div>
+
+            <aside class="project-detail__right">
+              <div class="meta">
+                <div class="meta__block">
+                  <div class="meta__label">Tools</div>
+                  <div class="meta__value">
+                    ROS2, Python, C++, LiDAR, IMU, Wheel Encoders, Raspberry Pi, Linux, RViz
+                  </div>
+                </div>
+
+                <div class="meta__block">
+                  <div class="meta__label">Concepts</div>
+                  <div class="meta__value">
+                    SLAM, Localization, Sensor Fusion, Path Planning, State Estimation, Real-time Integration
+                  </div>
+                </div>
+
+                <div class="meta__dates">
+                  <div><span class="meta__label">From</span><br />Aug 2025</div>
+                  <div><span class="meta__label">To</span><br />Dec 2025</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="project-detail__content">
+            <div class="bullets">
+              <ul>
+                <li class="reveal">
+                  Designed a modular ROS2 node architecture for sensing, mapping, localization, planning, and control.
+                </li>
+                <li class="reveal">
+                  Integrated LiDAR + RGB-D for robust obstacle awareness and navigation across varied conditions.
+                </li>
+                <li class="reveal">
+                  Implemented fusion + SLAM + planning with navigation accuracy within ±5 cm and strong repeatability.
+                </li>
+                <li class="reveal">
+                  Optimized runtime pipeline for low latency and stable real-time behavior.
+                </li>
+              </ul>
+            </div>
+
+            <div class="project-image">
+              <img class="img img--rounded" src="./assets/autobot.jpg" alt="AutoBot robot image" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION (like screenshot: big left title, image right) -->
+      <section id="education" class="split split--alt">
+        <div class="container split__grid">
+          <div class="split__content">
+            <h2 class="title">
+              University of Colorado, Boulder<br />
+              M.S Computer Science
+            </h2>
+            <p class="body">
+              GPA: 4.00. Courses: Computer Vision, Machine Learning, Neural Networks & Deep Learning,
+              Advanced Robotics, Computer Graphics.
+            </p>
+
+            <div class="small">
+              <div><strong>Pune Institute of Computer Technology</strong> — B.E. Information Technology</div>
+              <div>GPA: 3.8. Core: DSA, OOP, ML/DL, DBMS, HPC.</div>
+            </div>
+          </div>
+
+          <div class="split__media">
+            <img class="img img--rounded" src="./assets/cu.jpg" alt="CU Boulder" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section">
+        <div class="container">
+          <h2 class="title title--center">Internships & Experience</h2>
+
+          <div class="timeline">
+            <article class="timeline__item">
+              <div class="timeline__head">
+                <h3>HIRO Lab, CU Boulder — Robotics / Perception</h3>
+                <span>Apr 2025 – Present</span>
+              </div>
+              <ul class="timeline__list">
+                <li class="reveal">
+                  Designing multi-modal robot learning systems using foundation models for manipulation with visual + proprioceptive inputs.
+                </li>
+                <li class="reveal">
+                  Building real-time control pipelines with observation streaming and trajectory safety validation.
+                </li>
+                <li class="reveal">
+                  Collaborating on integrating learned policies into experimental setups.
+                </li>
+              </ul>
+            </article>
+
+            <article class="timeline__item">
+              <div class="timeline__head">
+                <h3>RGSTC — Machine Learning / Computer Vision</h3>
+                <span>Aug 2023 – May 2024</span>
+              </div>
+              <ul class="timeline__list">
+                <li class="reveal">
+                  Built sign-language recognition with LSTMs; achieved strong accuracy with optimized temporal modeling.
+                </li>
+                <li class="reveal">
+                  Improved inference speed via video dataset processing + fine-tuning workflows.
+                </li>
+              </ul>
+            </article>
+
+            <article class="timeline__item">
+              <div class="timeline__head">
+                <h3>AptLogic Consultants — ML & Business Intelligence</h3>
+                <span>Jun 2023 – Nov 2023</span>
+              </div>
+              <ul class="timeline__list">
+                <li class="reveal">
+                  Built end-to-end ML pipelines for data processing + training; improved workflow speed and reduced training time.
+                </li>
+                <li class="reveal">
+                  Evaluated algorithms and fine-tuned models to improve prediction accuracy across datasets.
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRAS -->
+      <section id="extras" class="section section--muted">
+        <div class="container">
+          <h2 class="title title--center">Extra-curriculars</h2>
+          <div class="two-col">
+            <p class="body reveal">
+              Add your club roles, hackathons, volunteering, robotics teams, or leadership here.
+            </p>
+            <p class="body reveal">
+              Keep it short and concrete: what you built, organized, or led.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERESTS -->
+      <section id="interests" class="section">
+        <div class="container">
+          <h2 class="title title--center">My personal interests</h2>
+          <div class="chips">
+            <span class="chip reveal">Humanoid robotics</span>
+            <span class="chip reveal">Computer vision</span>
+            <span class="chip reveal">Reinforcement learning</span>
+            <span class="chip reveal">Systems & deployment</span>
+            <span class="chip reveal">Building products</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div>© <span id="year"></span> Mandar Deshmukh</div>
+          <div class="footer__links">
+            <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
+            <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
