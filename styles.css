@@ -405,3 +405,109 @@ body{
 .pill:hover{
   transform: translateY(-1px);
 }
+
+:root {
+  --serif: "Playfair Display", serif;
+  --sans: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* Section wrapper */
+.split-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  padding: 120px 10%;
+}
+
+/* Alternate layout */
+.split-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Text side */
+.split-text {
+  flex: 1;
+}
+
+.split-text h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4vw, 64px);
+  line-height: 1.1;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.split-text p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.split-text .meta {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* Image side */
+.split-image {
+  flex: 1;
+}
+
+.split-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(245, 245, 245, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 20px 10%;
+}
+
+body {
+  margin: 0;
+  padding-top: 100px; /* prevents overlap */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  opacity: 0.6;
+}

@@ -1,35 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mandar Deshmukh — Education</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="index.html">Mandar Deshmukh: My Portfolio</a>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mandar Deshmukh — Work Experience</title>
 
-      <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="education.html">Education</a>
-        <a class="nav__link" href="experience.html">Work Experience</a>
-        <a class="nav__link" href="extracurriculars.html">Extra-curriculars</a>
-        <a class="nav__link" href="interests.html">My personal interests</a>
-      </nav>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">Mandar Deshmukh</a>
+    
+    <div class="nav-links">
+      <a href="education.html">Education</a>
+      <a href="experience.html">Experience</a>
+      <a href="contact.html">Contact</a>
     </div>
-    <div class="topbar__rule"></div>
-  </header>
+  </div>
+</nav>
 
-  <main>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">Education</h1>
-        <p class="body">Add your Education content here.</p>
-      </div>
-    </section>
-  </main>
+<style>
+:root {
+  --serif: "Playfair Display", serif;
+  --sans: "Inter", sans-serif;
+}
 
-  <script src="./script.js"></script>
+body {
+  margin: 0;
+  background: #f4f4f4;
+  font-family: var(--sans);
+  color: #111;
+}
+
+.split-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 8%;
+  gap: 80px;
+}
+
+.split-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.split-text {
+  flex: 1;
+}
+
+.split-text h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.split-text p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.meta {
+  margin-top: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.split-image {
+  flex: 1;
+}
+
+.split-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+@media(max-width: 900px) {
+  .split-section {
+    flex-direction: column;
+    padding: 80px 6%;
+  }
+
+  .split-section.reverse {
+    flex-direction: column;
+  }
+
+  .split-image img {
+    height: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HIRO LAB -->
+<section class="split-section">
+
+  <div class="split-text">
+    <h1>
+      Robotics SWE & ML Engineer  
+      HIRO Lab (2025 – Present)
+    </h1>
+
+    <p>
+      Designing and deploying multi-modal robot learning systems combining visual and proprioceptive inputs for high-DoF robotic platforms. Built full-stack pipelines for reinforcement learning and imitation learning with emphasis on robustness and real-time execution.
+    </p>
+
+    <div class="meta">
+      Focus: RL • Foundation Models • ROS2 Integration • Real-Time Robotics Systems
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="images/hiro.jpg" alt="HIRO Lab">
+  </div>
+
+</section>
+
+<!-- LEEDS -->
+<section class="split-section reverse">
+
+  <div class="split-text">
+    <h1>
+      ML Engineer  
+      Leeds School of Business (2025 – Present)
+    </h1>
+
+    <p>
+      Developed transformer-based long-document classification pipelines using RoBERTa and Longformer architectures. Designed scalable preprocessing workflows and hierarchical models achieving strong performance under severe class imbalance.
+    </p>
+
+    <div class="meta">
+      Focus: Transformers • Long-Document Modeling • Distributed Training • Deployment
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="images/leeds.jpg" alt="Leeds School of Business">
+  </div>
+
+</section>
+
+<!-- RGSTC -->
+<section class="split-section">
+
+  <div class="split-text">
+    <h1>
+      ML & Computer Vision Researcher  
+      Rajiv Gandhi Science & Tech Commission (2023 – 2024)
+    </h1>
+
+    <p>
+      Designed and implemented a real-time sign language recognition system using LSTM-based sequence modeling, achieving 97% accuracy and improving inference speed by 20%. Published research in an international Springer conference.
+    </p>
+
+    <div class="meta">
+      Focus: Sequence Modeling • Vision Systems • Publication
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="images/rgstc.jpg" alt="Research Work">
+  </div>
+
+</section>
+
 </body>
 </html>
