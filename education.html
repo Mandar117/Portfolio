@@ -1,158 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mandar Deshmukh — Education</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo">Mandar Deshmukh</a>
-    
-    <div class="nav-links">
-      <a href="education.html">Education</a>
-      <a href="experience.html">Experience</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-</nav>
-
-<style>
-:root {
-  --serif: "Playfair Display", serif;
-  --sans: "Inter", sans-serif;
-}
-
-body {
-  margin: 0;
-  background: #f4f4f4;
-  font-family: var(--sans);
-  color: #111;
-}
-
-.topbar {
-  padding: 20px 8%;
-  font-size: 15px;
-}
-
-.split-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 120px 8%;
-  gap: 80px;
-}
-
-.split-section.reverse {
-  flex-direction: row-reverse;
-}
-
-.split-text {
-  flex: 1;
-}
-
-.split-text h1 {
-  font-family: var(--serif);
-  font-size: clamp(40px, 4vw, 64px);
-  font-weight: 500;
-  line-height: 1.1;
-  margin-bottom: 40px;
-}
-
-.split-text p {
-  font-size: 18px;
-  line-height: 1.7;
-  max-width: 600px;
-}
-
-.meta {
-  margin-top: 40px;
-  font-size: 16px;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-.split-image {
-  flex: 1;
-}
-
-.split-image img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-@media(max-width: 900px) {
-  .split-section {
-    flex-direction: column;
-    padding: 80px 6%;
-  }
-
-  .split-section.reverse {
-    flex-direction: column;
-  }
-
-  .split-image img {
-    height: auto;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandar Deshmukh — Education</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<!-- CU BOULDER -->
-<section class="split-section">
-
-  <div class="split-text">
-    <h1>
-      University of Colorado Boulder  
-      M.S Computer Science (2024 – 2026)
-    </h1>
-
-    <p>
-      I am currently pursuing my Master’s degree in Computer Science at the University of Colorado Boulder, focusing on Robotics, Perception, and Learning Systems. My academic work centers around real-time intelligent systems, reinforcement learning, and computer vision.
-    </p>
-
-    <div class="meta">
-      <strong>GPA:</strong> 3.8 / 4.0 <br><br>
-      <strong>Relevant Coursework:</strong><br>
-      Robotics • Reinforcement Learning • Computer Vision • Advanced ML • Distributed Systems
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">Mandar Deshmukh</a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="education.html">Education</a>
+        <a class="nav__link" href="experience.html">Work Experience</a>
+        <a class="nav__link" href="extracurriculars.html">Extra-curriculars</a>
+        <a class="nav__link" href="interests.html">My personal interests</a>
+      </nav>
     </div>
-  </div>
+    <div class="topbar__rule"></div>
+  </header>
 
-  <div class="split-image">
-    <img src="images/cu-boulder.jpg" alt="CU Boulder">
-  </div>
+  <main>
 
-</section>
+    <!-- CU BOULDER -->
+    <section class="split">
+      <div class="container split__grid">
+        <div class="split__content">
+          <h1 class="title">
+            University of Colorado Boulder<br>
+            M.S Computer Science (2024 – 2026)
+          </h1>
+          <p class="body">
+            I am currently pursuing my Master's degree in Computer Science at the University of Colorado Boulder, focusing on Robotics, Perception, and Learning Systems. My academic work centers around real-time intelligent systems, reinforcement learning, and computer vision.
+          </p>
+          <div class="small">
+            <strong>GPA:</strong> 3.8 / 4.0<br><br>
+            <strong>Relevant Coursework:</strong><br>
+            Robotics • Reinforcement Learning • Computer Vision • Advanced ML • Distributed Systems
+          </div>
+        </div>
+        <div class="split__media">
+          <img class="img img--rounded" src="./assets/cu-boulder.jpg" alt="CU Boulder" loading="lazy" />
+        </div>
+      </div>
+    </section>
 
-<!-- PICT -->
-<section class="split-section reverse">
+    <!-- PICT -->
+    <section class="split split--alt">
+      <div class="container split__grid split__grid--reverse">
+        <div class="split__media">
+          <img class="img img--rounded" src="./assets/pict.jpg" alt="PICT Pune" loading="lazy" />
+        </div>
+        <div class="split__content">
+          <h1 class="title">
+            Pune Institute of Computer Technology<br>
+            B.E Information Technology
+          </h1>
+          <p class="body">
+            Completed my undergraduate degree in Information Technology, where I built a strong foundation in algorithms, systems programming, and applied machine learning. This period shaped my transition toward robotics and perception-driven systems.
+          </p>
+          <div class="small">
+            <strong>GPA:</strong> 3.8 / 4.0
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="split-text">
-    <h1>
-      Pune Institute of Computer Technology  
-      B.E Information Technology
-    </h1>
+  </main>
 
-    <p>
-      Completed my undergraduate degree in Information Technology, where I built a strong foundation in algorithms, systems programming, and applied machine learning. This period shaped my transition toward robotics and perception-driven systems.
-    </p>
-
-    <div class="meta">
-      <strong>GPA:</strong> 3.8 / 4.0
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Mandar Deshmukh</div>
+      <div class="footer__links">
+        <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
+        <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
     </div>
-  </div>
+  </footer>
 
-  <div class="split-image">
-    <img src="images/pict.jpg" alt="PICT Pune">
-  </div>
-
-</section>
-
+  <script src="./script.js"></script>
 </body>
 </html>
