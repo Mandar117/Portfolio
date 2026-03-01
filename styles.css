@@ -80,7 +80,10 @@ body{
 
 /* ── HERO ── */
 .hero{
-  padding: clamp(42px, 6vw, 88px) 0;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .hero__grid{
@@ -142,7 +145,10 @@ body{
 
 /* ── SPLIT SECTIONS ── */
 .split{
-  padding: clamp(52px, 7vw, 96px) 0;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .split__grid{
@@ -200,7 +206,10 @@ body{
 
 /* ── GENERAL SECTION ── */
 .section{
-  padding: clamp(60px, 7vw, 110px) 0;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 .section--muted{ background: var(--bg-muted); }
 
@@ -248,7 +257,10 @@ body{
 /* ── PROJECT DETAIL ── */
 .project-detail{
   background: var(--bg-muted);
-  padding: clamp(65px, 7vw, 110px) 0;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .project-detail__grid{
@@ -341,6 +353,10 @@ body{
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px){
+  .hero{ min-height: unset; padding: clamp(42px, 6vw, 88px) 0; }
+  .split{ min-height: unset; padding: clamp(52px, 7vw, 96px) 0; }
+  .section{ min-height: unset; padding: clamp(60px, 7vw, 110px) 0; }
+  .project-detail{ min-height: unset; padding: clamp(65px, 7vw, 110px) 0; }
   .hero__grid{ grid-template-columns: 1fr; }
   .split__grid{ grid-template-columns: 1fr; }
   .split__grid--reverse{ grid-template-columns: 1fr; }

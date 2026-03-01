@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mandar Deshmukh — Work Experience</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mandar Deshmukh — Work Experience</title>
+
+<link rel="stylesheet" href="./styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+.split-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0 8%;
+  gap: 80px;
+}
+
+.split-section.reverse {
+  flex-direction: row-reverse;
+  background: var(--bg-muted);
+}
+
+.split-text {
+  flex: 1;
+}
+
+.split-text h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 2.8vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.split-text p {
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 560px;
+  color: #1b1b1b;
+}
+
+.meta {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.meta strong {
+  color: #111;
+  font-weight: 600;
+}
+
+.split-image {
+  flex: 1;
+}
+
+.split-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+@media(max-width: 900px) {
+  .split-section {
+    flex-direction: column;
+    min-height: unset;
+    padding: 80px 6%;
+  }
+  .split-section.reverse {
+    flex-direction: column;
+  }
+  .split-image img {
+    height: auto;
+  }
+}
+</style>
 </head>
+
 <body>
 
   <header class="topbar">
@@ -22,83 +96,88 @@
     <div class="topbar__rule"></div>
   </header>
 
-  <main>
+<!-- HIRO LAB -->
+<section class="split-section">
 
-    <!-- HIRO LAB -->
-    <section class="split">
-      <div class="container split__grid">
-        <div class="split__content">
-          <h1 class="title">
-            Robotics SWE &amp; ML Engineer<br>
-            HIRO Lab (2025 – Present)
-          </h1>
-          <p class="body">
-            Designing and deploying multi-modal robot learning systems combining visual and proprioceptive inputs for high-DoF robotic platforms. Built full-stack pipelines for reinforcement learning and imitation learning with emphasis on robustness and real-time execution.
-          </p>
-          <div class="small">
-            Focus: RL • Foundation Models • ROS2 Integration • Real-Time Robotics Systems
-          </div>
-        </div>
-        <div class="split__media">
-          <img class="img img--rounded" src="./assets/hiro.jpg" alt="HIRO Lab" loading="lazy" />
-        </div>
-      </div>
-    </section>
+  <div class="split-text">
+    <h1>Robotics SWE &amp; ML Engineer — HIRO Lab (Jan 2025 – Present)</h1>
 
-    <!-- LEEDS -->
-    <section class="split split--alt">
-      <div class="container split__grid split__grid--reverse">
-        <div class="split__media">
-          <img class="img img--rounded" src="./assets/leeds.png" alt="Leeds School of Business" loading="lazy" />
-        </div>
-        <div class="split__content">
-          <h1 class="title">
-            ML Engineer<br>
-            Leeds School of Business (2025 – Present)
-          </h1>
-          <p class="body">
-            Developed transformer-based long-document classification pipelines using RoBERTa and Longformer architectures. Designed scalable preprocessing workflows and hierarchical models achieving strong performance under severe class imbalance.
-          </p>
-          <div class="small">
-            Focus: Transformers • Long-Document Modeling • Distributed Training • Deployment
-          </div>
-        </div>
-      </div>
-    </section>
+    <p>
+      Developing multi-modal robot learning systems at CU Boulder's Human Interaction &amp; RObotics Group, combining visual and proprioceptive inputs for high-DoF manipulation platforms. Building full-stack pipelines spanning data collection, policy training, and real-time ROS2 deployment.
+    </p>
 
-    <!-- RGSTC -->
-    <section class="split">
-      <div class="container split__grid">
-        <div class="split__content">
-          <h1 class="title">
-            ML &amp; Computer Vision Researcher<br>
-            Rajiv Gandhi Science &amp; Tech Commission (2023 - 2024)
-          </h1>
-          <p class="body">
-            Designed and implemented a real-time sign language recognition system using LSTM-based sequence modeling, achieving 97% accuracy and improving inference speed by 20%. Published research in an international Springer conference.
-          </p>
-          <div class="small">
-            Focus: Sequence Modeling • Vision Systems • Publication
-          </div>
-        </div>
-        <div class="split__media">
-          <img class="img img--rounded" src="./assets/rgstc.png" alt="Research Work" loading="lazy" />
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div>© <span id="year"></span> Mandar Deshmukh</div>
-      <div class="footer__links">
-        <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
-        <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
-      </div>
+    <div class="meta">
+      <strong>Role:</strong> Robotics Software &amp; ML Engineer<br>
+      <strong>Department:</strong> Computer Science — HIRO Group<br>
+      <strong>Tools:</strong> Python, ROS2, PyTorch, MuJoCo, Stable Baselines3, Weights &amp; Biases, RViz, Gazebo<br>
+      <strong>Concepts:</strong> Reinforcement Learning, Imitation Learning, Multi-modal Perception, Sensor Fusion, Foundation Models, Real-time Control
     </div>
-  </footer>
+  </div>
 
-  <script src="./script.js"></script>
+  <div class="split-image">
+    <img src="./assets/hiro.jpg" alt="HIRO Lab">
+  </div>
+
+</section>
+
+<!-- LEEDS -->
+<section class="split-section reverse">
+
+  <div class="split-text">
+    <h1>ML Engineer — Leeds School of Business (Jan 2025 – Present)</h1>
+
+    <p>
+      Building transformer-based document classification systems for large-scale business text at CU Boulder's Leeds School of Business. Architected hierarchical RoBERTa and Longformer pipelines with custom preprocessing to handle documents far exceeding standard token limits, achieving strong F1 under heavy class imbalance.
+    </p>
+
+    <div class="meta">
+      <strong>Role:</strong> Machine Learning Engineer<br>
+      <strong>Department:</strong> Business Analytics &amp; Information Systems<br>
+      <strong>Tools:</strong> Python, HuggingFace Transformers, RoBERTa, Longformer, PyTorch, scikit-learn, Pandas<br>
+      <strong>Concepts:</strong> Long-Document NLP, Transformer Fine-tuning, Class Imbalance Handling, Hierarchical Modeling, Distributed Training, Deployment
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="./assets/leeds.png" alt="Leeds School of Business">
+  </div>
+
+</section>
+
+<!-- RGSTC -->
+<section class="split-section">
+
+  <div class="split-text">
+    <h1>ML &amp; Computer Vision Researcher — Rajiv Gandhi Science &amp; Tech Commission (Jun 2023 – Jul 2024)</h1>
+
+    <p>
+      Designed and deployed a real-time Indian Sign Language recognition system using MediaPipe keypoint extraction and LSTM sequence modeling, achieving 97% test accuracy. Optimized the inference pipeline for a 20% speed improvement and published findings at an international Springer conference.
+    </p>
+
+    <div class="meta">
+      <strong>Role:</strong> ML &amp; Computer Vision Researcher<br>
+      <strong>Department:</strong> Applied Research Division<br>
+      <strong>Tools:</strong> Python, TensorFlow, OpenCV, MediaPipe, LSTM, Keras<br>
+      <strong>Concepts:</strong> Sequence Modeling, Gesture Recognition, Real-time Inference, Model Optimization, Academic Publication
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="./assets/rgstc.png" alt="Research Work">
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>© <span id="year"></span> Mandar Deshmukh</div>
+    <div class="footer__links">
+      <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
+      <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script src="./script.js"></script>
 </body>
 </html>
