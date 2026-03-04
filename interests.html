@@ -3,9 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mandar Deshmukh — Personal Interests</title>
+  <title>Mandar Deshmukh — Extra-curriculars</title>
   <link rel="stylesheet" href="./styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    .intro-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+      width: 100%;
+    }
+
+    .intro-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 90px);
+      font-weight: 500;
+      line-height: 1.05;
+      margin: 0 0 32px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-text p {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 18px 0;
+      max-width: 56ch;
+    }
+
+    .activity-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+    }
+
+    .activity-section--alt {
+      background: var(--bg-muted);
+    }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+      width: 100%;
+    }
+
+    .activity-grid--reverse .activity-text {
+      order: -1;
+    }
+
+    .activity-image img,
+    .intro-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .activity-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 64px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .activity-text p {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 14px 0;
+      max-width: 52ch;
+    }
+
+    @media (max-width: 1024px) {
+      .intro-section { min-height: unset; padding: 80px 6%; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .activity-section { min-height: unset; padding: 80px 6%; }
+      .activity-grid { grid-template-columns: 1fr; }
+      .activity-grid--reverse .activity-text { order: 0; }
+    }
+
+    .collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .collage img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -23,12 +130,121 @@
   </header>
 
   <main>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">My Personal Interests</h1>
-        <p class="body">Add your personal interests here.</p>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <h1>My Life Beyond the Lab</h1>
+          <p>
+            Outside of research and coursework, I find real joy in pushing myself physically and creatively. These pursuits aren't just hobbies, they've shaped how I think, compete, and carry myself under pressure. Whether it's on a football pitch, in a dojo, or behind a drum kit, I've always believed that who you are outside of work defines the engineer you become inside it.
+          </p>
+          <p>
+            I'm passionate about sport, discipline, movement, and craft. I've competed at a serious level in football and trained hard in martial arts, and I bring that same focus and intensity to everything I do. Music and photography round out the other side of me, a need to create, observe, and find beauty in the everyday.
+          </p>
+          <p>
+            These experiences have taught me resilience, teamwork, patience, and how to perform when it counts. They continue to influence how I approach problems, collaborate with people, and stay grounded through the demands of graduate school.
+          </p>
+        </div>
+        <div class="intro-image">
+          <img src="./assets/hero-1.jpg" alt="Mandar beyond the lab" />
+        </div>
       </div>
     </section>
+
+    <!-- FOOTBALL -->
+    <section class="activity-section activity-section--alt">
+      <div class="activity-grid">
+        <div class="activity-image">
+          <img src="./assets/football.jpg" alt="Football" />
+        </div>
+        <div class="activity-text">
+          <h2>Football</h2>
+          <p>
+            I've played football competitively since school and represented my district at the district level — an experience that taught me more about leadership, pressure, and teamwork than almost anything else. Playing at that level means showing up consistently, reading the game fast, and trusting your teammates completely.
+          </p>
+          <p>
+            Football remains my favourite sport to this day. There's something irreplaceable about the combination of individual skill and collective strategy that keeps drawing me back to the pitch.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARTIAL ARTS -->
+    <section class="activity-section">
+      <div class="activity-grid activity-grid--reverse">
+        <div class="activity-image">
+          <img src="./assets/karate.jpg" alt="Martial Arts" />
+        </div>
+        <div class="activity-text">
+          <h2>Martial Arts</h2>
+          <p>
+            I hold a blue belt in martial arts, a rank that represents years of consistent training, discipline, and a genuine respect for the craft. Martial arts has given me a framework for managing stress, staying composed, and developing mental clarity under pressure.
+          </p>
+          <p>
+            The dojo teaches you to be patient, to absorb what is useful, and to keep showing up even when progress is slow. Those are lessons I carry directly into research and engineering.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FITNESS -->
+    <section class="activity-section activity-section--alt">
+      <div class="activity-grid">
+        <div class="activity-image">
+          <img src="./assets/fitness.jpg" alt="Fitness" />
+        </div>
+        <div class="activity-text">
+          <h2>Fitness &amp; Training</h2>
+          <p>
+            Working out is a non-negotiable part of my routine. I train regularly, lifting, conditioning, and staying active, because physical discipline is directly tied to mental performance. A good session in the gym sets the tone for everything else in the day.
+          </p>
+          <p>
+            Staying fit isn't just about aesthetics. For me it's about building a body and mind that can handle long hours of research, creative problem-solving, and the demands of a high-paced graduate program without burning out.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRUMS -->
+    <section class="activity-section">
+      <div class="activity-grid activity-grid--reverse">
+        <div class="activity-image">
+          <img src="./assets/drums.jpg" alt="Drums" />
+        </div>
+        <div class="activity-text">
+          <h2>Drums &amp; Music</h2>
+          <p>
+            I play the drums, and have for years. There's something deeply satisfying about rhythm, timing, and the physicality of percussion. It's an outlet that demands full presence: you can't be thinking about anything else when you're playing.
+          </p>
+          <p>
+            Music has always been a creative counterbalance to the analytical nature of engineering. It keeps the right brain active, feeds curiosity, and is a reminder that not everything needs to be optimized, sometimes the point is just to feel it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTOGRAPHY -->
+    <section class="activity-section activity-section--alt">
+      <div class="activity-grid">
+        <div class="collage">
+          <img src="./assets/mountain.jpg" alt="Travel" />
+          <img src="./assets/gc.jpg" alt="Travel" />
+          <img src="./assets/cali.jpg" alt="Travel" />
+          <img src="./assets/gc-2.jpg" alt="Travel" />
+        </div>
+        <div class="activity-text">
+          <h2>Photography</h2>
+          <p>
+            Photography is how I slow down. I enjoy picking up a camera and finding something worth capturing — a moment, a composition, a quality of light that would otherwise go unnoticed. It's a habit that sharpens observation skills and builds a certain patience that carries over into technical work.
+          </p>
+          <p>
+            I mostly shoot candidly, people, places, and scenes that tell a story without being staged. Looking back through a collection of photos is one of the best ways I know to reflect on time well spent.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
