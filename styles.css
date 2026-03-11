@@ -370,3 +370,7 @@ body{
   .cards{ grid-template-columns: 1fr; }
   .nav{ gap: 8px; }
 }
+
+#projects {
+  scroll-margin-top: 60px;
+}
