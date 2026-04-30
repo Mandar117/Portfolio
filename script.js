@@ -48,3 +48,16 @@ const navIO = new IntersectionObserver(
 );
 
 sections.forEach((s) => navIO.observe(s));
+
+// Coming soon toast for incomplete project links
+const toast = document.getElementById("coming-soon-toast");
+let toastTimer;
+
+document.querySelectorAll("[data-coming-soon]").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearTimeout(toastTimer);
+    toast.classList.add("show");
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+  });
+});

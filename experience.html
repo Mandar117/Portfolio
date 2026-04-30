@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/* ── LOGO / INTRO SPLIT SECTIONS ── */
 .split-section {
   display: flex;
   align-items: center;
@@ -42,14 +43,14 @@
   color: #1b1b1b;
 }
 
-.meta {
+.split-meta {
   margin-top: 20px;
   font-size: 14px;
   line-height: 1.8;
   color: #444;
 }
 
-.meta strong {
+.split-meta strong {
   color: #111;
   font-weight: 600;
 }
@@ -65,7 +66,136 @@
   border-radius: 20px;
 }
 
-@media(max-width: 900px) {
+/* ── DETAIL (PHOTO + STAR) SECTIONS ── */
+.detail-section {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 80px 8%;
+  gap: 80px;
+}
+
+.detail-section--alt {
+  background: var(--bg-muted);
+}
+
+/* Media grid column (photos + videos) */
+.detail-photos {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-content: center;
+}
+
+.detail-photo,
+.detail-video {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-slot {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #d5d5d5;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #aaa;
+}
+
+/* Leeds — first photo landscape (full group), second photo portrait (tight crop) */
+.detail-photos--tall {
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 18px;
+}
+
+.detail-photos--tall .detail-photo {
+  border-radius: 16px;
+  width: 100%;
+  display: block;
+}
+
+.detail-photos--tall .detail-photo:first-child {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #e8e8e8;
+}
+
+.detail-photos--tall .detail-photo:last-child {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* STAR content column */
+.detail-content {
+  flex: 1.2;
+}
+
+.detail-eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.star-block {
+  margin-bottom: 22px;
+}
+
+.star-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.star-text {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.75;
+  color: #1b1b1b;
+  margin: 0;
+  max-width: 52ch;
+}
+
+.report-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 32px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  padding: 11px 22px;
+  border: 1.5px solid #111;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.report-btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
   .split-section {
     flex-direction: column;
     min-height: unset;
@@ -76,6 +206,17 @@
   }
   .split-image img {
     height: auto;
+  }
+  .detail-section {
+    flex-direction: column;
+    min-height: unset;
+    padding: 70px 6%;
+  }
+  .detail-photos {
+    width: 100%;
+  }
+  .star-text {
+    max-width: 100%;
   }
 }
 </style>
@@ -96,17 +237,20 @@
     <div class="topbar__rule"></div>
   </header>
 
-<!-- HIRO LAB -->
+
+<!-- ════════════════════ HIRO LAB — LOGO / INTRO ════════════════════ -->
 <section class="split-section">
 
   <div class="split-text">
-    <h1>Robotics SWE &amp; ML Engineer — HIRO Lab (Jan 2025 – Present)</h1>
+    <h1>Robotics SWE &amp; ML Engineer — HIRO Lab (April 2025 – April 2026)</h1>
 
     <p>
-      Developing multi-modal robot learning systems at CU Boulder's Human Interaction &amp; RObotics Group, combining visual and proprioceptive inputs for high-DoF manipulation platforms. Building full-stack pipelines spanning data collection, policy training, and real-time ROS2 deployment.
+      Developed multi-modal robot learning systems at CU Boulder's Human Interaction &amp; RObotics Group,
+      combining visual and proprioceptive inputs for high-DoF manipulation platforms. Building full-stack
+      pipelines spanning data collection, policy training, and real-time ROS2 deployment.
     </p>
 
-    <div class="meta">
+    <div class="split-meta">
       <strong>Role:</strong> Robotics Software &amp; ML Engineer<br>
       <strong>Department:</strong> Computer Science — HIRO Group<br>
       <strong>Tools:</strong> Python, ROS2, PyTorch, MuJoCo, Stable Baselines3, Weights &amp; Biases, RViz, Gazebo<br>
@@ -120,17 +264,60 @@
 
 </section>
 
-<!-- LEEDS -->
+<!-- ════════════════════ HIRO LAB — DETAIL ════════════════════ -->
+<!-- Logo is on the RIGHT → photos go on the LEFT -->
+<section class="detail-section detail-section--alt">
+
+  <div class="detail-photos">
+    <img src="./assets/hiro-1.jpg" alt="HIRO Lab robotics work" class="detail-photo">
+    <img src="./assets/hiro-2.jpg" alt="HIRO Lab robot setup" class="detail-photo">
+    <video class="detail-video" src="./assets/hiro-3.MOV" autoplay muted loop playsinline></video>
+    <video class="detail-video" src="./assets/hiro-4.MOV" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="detail-content">
+    <span class="detail-eyebrow">Project Brief</span>
+
+    <div class="star-block">
+      <div class="star-label">Situation</div>
+      <p class="star-text">High-DoF robotic manipulation at CU Boulder's HIRO Lab relied on single-modality sensory inputs, limiting policy generalization across task variations and sim-to-real transfer.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Task</div>
+      <p class="star-text">Build a full-stack multi-modal imitation learning pipeline integrating RGB vision with proprioceptive feedback for real-time manipulation policy training and deployment on physical hardware via ROS2.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Action</div>
+      <p class="star-text">Designed a teleoperation-based data collection system in ROS2, trained transformer-backed imitation and RL policies using PyTorch and Stable Baselines3, and validated in MuJoCo simulation before hardware transfer — with all experiments tracked end-to-end in Weights &amp; Biases.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Result</div>
+      <p class="star-text">Delivered a reproducible multi-modal robot learning system with real-time ROS2 deployment, advancing the lab's embodied AI research and establishing reusable manipulation benchmarks across multiple task configurations.</p>
+    </div>
+
+    <a href="./assets/hiro-report.pdf" class="report-btn" target="_blank" rel="noreferrer">View Report &nbsp;↗</a>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════ LEEDS — LOGO / INTRO ════════════════════ -->
 <section class="split-section reverse">
 
   <div class="split-text">
     <h1>ML Engineer — Leeds School of Business (Jan 2025 – Present)</h1>
 
     <p>
-      Building transformer-based document classification systems for large-scale business text at CU Boulder's Leeds School of Business. Architected hierarchical RoBERTa and Longformer pipelines with custom preprocessing to handle documents far exceeding standard token limits, achieving strong F1 under heavy class imbalance.
+      Building transformer-based document classification systems for large-scale business text at
+      CU Boulder's Leeds School of Business. Architected hierarchical RoBERTa and Longformer pipelines
+      with custom preprocessing to handle documents far exceeding standard token limits, achieving
+      strong F1 under heavy class imbalance.
     </p>
 
-    <div class="meta">
+    <div class="split-meta">
       <strong>Role:</strong> Machine Learning Engineer<br>
       <strong>Department:</strong> Business Analytics &amp; Information Systems<br>
       <strong>Tools:</strong> Python, HuggingFace Transformers, RoBERTa, Longformer, PyTorch, scikit-learn, Pandas<br>
@@ -144,17 +331,57 @@
 
 </section>
 
-<!-- RGSTC -->
+<!-- ════════════════════ LEEDS — DETAIL ════════════════════ -->
+<!-- Logo is on the LEFT → photos go on the RIGHT -->
+<section class="detail-section">
+
+  <div class="detail-content">
+    <span class="detail-eyebrow">Project Brief</span>
+
+    <div class="star-block">
+      <div class="star-label">Situation</div>
+      <p class="star-text">Leeds School of Business researchers needed to classify large volumes of long-form business documents, but standard transformer models like BERT truncated content beyond 512 tokens — discarding crucial information mid-document.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Task</div>
+      <p class="star-text">Engineer a scalable NLP classification pipeline capable of processing documents far exceeding standard token limits, maintaining high F1 performance across categories with severe class imbalance.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Action</div>
+      <p class="star-text">Architected hierarchical RoBERTa and Longformer pipelines with custom chunking and sliding-window strategies, implemented class-weighted loss and oversampling to address imbalance, and fine-tuned models via HuggingFace Transformers and PyTorch on the curated business document corpus.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Result</div>
+      <p class="star-text">Produced a deployed classification system achieving strong F1 across all document categories, enabling automated large-scale text analysis and significantly accelerating the school's business analytics research pipeline.</p>
+    </div>
+
+    <a href="./assets/Mandar_Deshmukh_Resume.pdf" class="report-btn" target="_blank" rel="noreferrer">View Report &nbsp;↗</a>
+  </div>
+
+  <div class="detail-photos detail-photos--tall">
+    <img src="./assets/leeds-1.jpeg" alt="Leeds work" class="detail-photo">
+    <img src="./assets/leeds-2.jpeg" alt="Leeds setup" class="detail-photo">
+  </div>
+
+</section>
+
+
+<!-- ════════════════════ RGSTC — LOGO / INTRO ════════════════════ -->
 <section class="split-section">
 
   <div class="split-text">
     <h1>ML &amp; Computer Vision Researcher — Rajiv Gandhi Science &amp; Tech Commission (Jun 2023 – Jul 2024)</h1>
 
     <p>
-      Designed and deployed a real-time Indian Sign Language recognition system using MediaPipe keypoint extraction and LSTM sequence modeling, achieving 97% test accuracy. Optimized the inference pipeline for a 20% speed improvement and published findings at an international Springer conference.
+      Designed and deployed a real-time Indian Sign Language recognition system using MediaPipe keypoint
+      extraction and LSTM sequence modeling, achieving 97% test accuracy. Optimized the inference pipeline
+      for a 20% speed improvement and published findings at an international Springer conference.
     </p>
 
-    <div class="meta">
+    <div class="split-meta">
       <strong>Role:</strong> ML &amp; Computer Vision Researcher<br>
       <strong>Department:</strong> Applied Research Division<br>
       <strong>Tools:</strong> Python, TensorFlow, OpenCV, MediaPipe, LSTM, Keras<br>
@@ -163,10 +390,47 @@
   </div>
 
   <div class="split-image">
-    <img src="./assets/rgstc.png" alt="Research Work">
+    <img src="./assets/rgstc.png" alt="Rajiv Gandhi Science &amp; Tech Commission">
   </div>
 
 </section>
+
+<!-- ════════════════════ RGSTC — DETAIL ════════════════════ -->
+<!-- Logo is on the RIGHT → photos go on the LEFT -->
+<section class="detail-section detail-section--alt">
+
+  <div class="detail-photos" style="grid-template-columns: 1fr;">
+    <img src="./assets/extracurriculars-hero.jpg" alt="RGSTC research work" class="detail-photo" style="aspect-ratio: 4/3; object-fit: cover;">
+  </div>
+
+  <div class="detail-content">
+    <span class="detail-eyebrow">Project Brief</span>
+
+    <div class="star-block">
+      <div class="star-label">Situation</div>
+      <p class="star-text">India's ~18 million hearing-impaired citizens lacked access to a real-time, low-cost Indian Sign Language recognition tool — existing academic systems required expensive depth sensors or massive annotated datasets.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Task</div>
+      <p class="star-text">Design, train, and deploy a real-time ISL recognition system operable on standard webcam hardware, targeting research-grade accuracy across 50+ gestures and suitable for international publication.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Action</div>
+      <p class="star-text">Extracted hand and body keypoints via MediaPipe, trained LSTM sequence models on keypoint time-series, and optimized the inference pipeline through lightweight post-processing and quantization — reducing latency without sacrificing accuracy.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Result</div>
+      <p class="star-text">Achieved 97% test accuracy with a 20% improvement in inference speed, publishing findings in international Springer conference proceedings and delivering a deployable real-time ISL recognition tool accessible without specialized hardware.</p>
+    </div>
+
+    <a href="./assets/Report.pdf" class="report-btn" target="_blank" rel="noreferrer">Read Publication &nbsp;↗</a>
+  </div>
+
+</section>
+
 
 <footer class="footer">
   <div class="container footer__inner">

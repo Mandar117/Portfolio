@@ -374,3 +374,27 @@ body{
 #projects {
   scroll-margin-top: 60px;
 }
+
+/* ── COMING SOON TOAST ── */
+#coming-soon-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #111;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 999;
+}
+
+#coming-soon-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
