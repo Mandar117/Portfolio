@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandar Deshmukh — Dual-Arm Hand Teleoperation System</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── HERO: Problem Statement + Meta ── */
+    .proj-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--bg-muted);
+      padding: 0 8%;
+    }
+
+    .proj-hero__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: start;
+      width: 100%;
+    }
+
+    .proj-hero__statement h1 {
+      font-family: var(--serif);
+      font-size: clamp(14px, 1.2vw, 16px);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 0 0 20px 0;
+    }
+
+    .proj-hero__statement p {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 38px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .proj-meta {
+      padding-top: 8px;
+    }
+
+    .proj-meta__block {
+      margin-bottom: 24px;
+    }
+
+    .proj-meta__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .proj-meta__value {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #111;
+    }
+
+    .proj-meta__dates {
+      display: flex;
+      gap: 48px;
+      margin-top: 28px;
+    }
+
+    .proj-meta__dates div {
+      font-family: var(--sans);
+    }
+
+    .proj-meta__dates .proj-meta__label {
+      margin-bottom: 4px;
+    }
+
+    .proj-meta__dates span {
+      font-size: 15px;
+      color: #111;
+    }
+
+    /* ── BULLETS + IMAGE ── */
+    .proj-bullets {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+    }
+
+    .proj-bullets__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .proj-bullets ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .proj-bullets ul li {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin-bottom: 20px;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .proj-bullets ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #888;
+    }
+
+    .proj-bullets__image img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── FLOWCHART / ARCHITECTURE ── */
+    .proj-arch {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg-muted);
+    }
+
+    .proj-arch__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .proj-arch__grid--reverse .proj-arch__image {
+      order: -1;
+    }
+
+    .proj-arch h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-arch p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 14px 0;
+      max-width: 54ch;
+    }
+
+    .proj-arch__image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* ── PIPELINE DIAGRAM (inline SVG / code block style) ── */
+    .proj-pipeline {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+    }
+
+    .proj-pipeline h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      margin: 0 0 40px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-pipeline__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .proj-pipeline p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 14px 0;
+      max-width: 54ch;
+    }
+
+    /* ── LAYER STACK VISUAL ── */
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .layer-item {
+      background: #f5f5f5;
+      border-left: 3px solid #111;
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .layer-item:hover {
+      background: #ececec;
+    }
+
+    .layer-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      min-width: 52px;
+    }
+
+    .layer-text {
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.55;
+      color: #1b1b1b;
+    }
+
+    .layer-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* ── EXTRA IMAGES ROW ── */
+    .proj-gallery {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+    }
+
+    .proj-gallery h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      margin: 0 0 40px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .proj-gallery__grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* ── REPORT BUTTON ── */
+    .proj-report {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg-muted);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .proj-report a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: #111;
+      border: 1px solid #111;
+      border-radius: 999px;
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .proj-report a:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+      .proj-hero { min-height: unset; padding: 80px 6%; }
+      .proj-hero__grid { grid-template-columns: 1fr; }
+      .proj-bullets { padding: 60px 6%; }
+      .proj-bullets__grid { grid-template-columns: 1fr; }
+      .proj-arch { padding: 60px 6%; }
+      .proj-arch__grid { grid-template-columns: 1fr; }
+      .proj-arch__grid--reverse .proj-arch__image { order: 0; }
+      .proj-pipeline { padding: 60px 6%; }
+      .proj-pipeline__grid { grid-template-columns: 1fr; }
+      .proj-gallery { padding: 60px 6%; }
+      .proj-gallery__grid { grid-template-columns: 1fr 1fr; }
+      .proj-report { padding: 60px 6%; }
+    }
+
+    @media (max-width: 560px) {
+      .proj-gallery__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="../index.html">Mandar Deshmukh</a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="../index.html#projects">Projects</a>
+        <a class="nav__link" href="../education.html">Education</a>
+        <a class="nav__link" href="../experience.html">Work Experience</a>
+        <a class="nav__link" href="../extracurriculars.html">Extra-curriculars</a>
+      </nav>
+    </div>
+    <div class="topbar__rule"></div>
+  </header>
+
+  <main>
+
+    <!-- ── SECTION 1: PROBLEM STATEMENT + META ── -->
+    <section class="proj-hero">
+      <div class="proj-hero__grid">
+
+        <div class="proj-hero__statement">
+          <h1>Problem Statement</h1>
+          <p>
+            To design and deploy a real-time dual-arm robot teleoperation system using only a commodity webcam, enabling simultaneous bilateral control of two 6-DOF robot arms through bare hand gestures, with no gloves, wearables, or depth sensors required.
+          </p>
+        </div>
+
+        <div class="proj-meta">
+          <div class="proj-meta__block">
+            <div class="proj-meta__label">Tools</div>
+            <div class="proj-meta__value">Python, ROS 2 Humble, MoveIt 2, MediaPipe Hands, OpenCV, NumPy, ros2_control, KDL IK Solver, ffmpeg, RViz2, Xacro/URDF, WSL2</div>
+          </div>
+          <div class="proj-meta__block">
+            <div class="proj-meta__label">Concepts</div>
+            <div class="proj-meta__value">Real-time Teleoperation, Inverse Kinematics, URDF/Xacro Robot Modeling, Hand Landmark Detection, One Euro Filter, Trajectory Control, Self-Collision Avoidance, Bilateral Arm Control, ROS 2 Multi-Threading, Signal Processing</div>
+          </div>
+          <div class="proj-meta__dates">
+            <div>
+              <div class="proj-meta__label">Completed</div>
+              <span>June 2026</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: BULLET POINTS + PROJECT IMAGE ── -->
+    <section class="proj-bullets">
+      <div class="proj-bullets__grid">
+        <ul>
+          <li>
+            Built a complete dual-arm robot from scratch using URDF/Xacro: a parametric 6-DOF arm macro with UR5-inspired DH parameters instantiated twice on a shared stand, with full inertial properties and ros2_control mock hardware integration.
+          </li>
+          <li>
+            Implemented a real-time MediaPipe Hands perception pipeline tracking 21 landmarks per hand at 30 Hz, mapping wrist position and wrist-to-finger orientation into end-effector target poses in 3D robot Cartesian space.
+          </li>
+          <li>
+            Solved IK in real time via MoveIt 2's collision-aware GetPositionIK service using a KDL Jacobian-based numerical solver with a 50 ms hard timeout and SRDF-enforced self-collision avoidance across both arms simultaneously.
+          </li>
+          <li>
+            Applied the One Euro Filter: an adaptive low-pass filter that lowers its cutoff frequency when the hand is stationary and raises it during fast motion, eliminating MediaPipe jitter at rest without adding perceptible lag during deliberate gestures.
+          </li>
+          <li>
+            Engineered pinch-to-grip control from 3D thumb-index distance normalized to gripper joint travel (0–35 mm), with independent JointTrajectoryControllers per arm and gripper to allow asynchronous command rates and overlapping execution.
+          </li>
+        </ul>
+
+        <div class="proj-bullets__image">
+          <img src="../assets/dual_arm_demo.png" alt="Dual-arm teleoperation system in RViz" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: ARCHITECTURE ── -->
+    <section class="proj-arch">
+      <div class="proj-arch__grid">
+        <div>
+          <h2>System Architecture</h2>
+          <p>
+            The pipeline separates cleanly into three layers. The perception layer (teleop_node.py) captures frames via a custom ffmpeg subprocess, runs MediaPipe Hands detection, applies the One Euro Filter and a 4 mm position dead-band, then publishes target PoseStamped messages and gripper commands over ROS 2 topics.
+          </p>
+          <p>
+            The control layer (arm_controller_node.py) runs background worker threads per arm, each polling at 50 Hz, calling MoveIt's /compute_ik service asynchronously, and dispatching single-point FollowJointTrajectory goals only when the new target is more than 8 mm from the last executed position.
+          </p>
+          <p>
+            MoveIt's full motion planner (OMPL) is intentionally bypassed. Direct IK → trajectory execution keeps end-to-end latency under 50 ms and avoids the variable planning time and exaggerated arc paths OMPL generates for small incremental movements.
+          </p>
+        </div>
+        <div class="proj-arch__image">
+          <img src="../assets/dual_arm_arch.png" alt="Dual-arm teleoperation system architecture diagram" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: NOISE FILTERING + LAYER STACK ── -->
+    <section class="proj-pipeline">
+      <div class="proj-pipeline__grid">
+        <div>
+          <h2>6-Layer Noise Rejection</h2>
+          <p>
+            Monocular hand tracking is inherently noisy, landmarks jitter sub-pixel even for a stationary hand, and tracking confidence drops during fast motion or partial occlusion. A single filter cannot satisfy both requirements (heavy smoothing at rest, low lag during motion), so the system stacks six independent rejection mechanisms across the pipeline.
+          </p>
+          <p>
+            The result is a teleoperation system that holds perfectly still when the operator is stationary, tracks fast sweeping gestures without lag, and recovers cleanly when a hand briefly leaves the frame, all without any special calibration step.
+          </p>
+        </div>
+        <div class="layer-stack">
+          <div class="layer-item">
+            <span class="layer-num">Layer 1</span>
+            <span class="layer-text"><strong>Confidence Gating: MediaPipe</strong>Detection score below 0.5 or tracking below 0.4 discards the hand entirely, eliminating false detections from partial occlusions.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 2</span>
+            <span class="layer-text"><strong>One Euro Filter: teleop_node</strong>Adaptive low-pass filter per hand across [x, z, yaw]. Cutoff rises with signal speed: min_cutoff = 1.2 Hz, beta = 0.05.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 3</span>
+            <span class="layer-text"><strong>Position Dead-Band, teleop_node</strong>Movements smaller than 4 mm after filtering are snapped to zero, eliminating residual micro-motion from a nearly-still hand.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 4</span>
+            <span class="layer-text"><strong>IK Call Threshold: arm_controller</strong>IK is only invoked when the new target is more than 8 mm from the last executed position, preventing redundant solver calls.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 5</span>
+            <span class="layer-text"><strong>Hand Persistence Window: arm_controller</strong>Controller stays active for 1 second after a hand disappears, preventing jerk stops from momentary tracking loss during fast motion.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 6</span>
+            <span class="layer-text"><strong>IK Failure Hold: arm_controller</strong>On any IK error (singularity, collision, timeout), the arm holds its last valid configuration rather than executing a failed target.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: MORE BULLETS ── -->
+    <section class="proj-bullets" style="background: var(--bg-muted);">
+      <div style="max-width: 760px;">
+        <ul>
+          <li>
+            Solved a critical WSL2 camera hang: OpenCV's cv2.VideoCapture blocks indefinitely on USB-forwarded devices. The fix, a custom _FfmpegCamera class spawning an ffmpeg subprocess with MJPEG input and raw BGR24 stdout piped into numpy, is hidden behind an identical isOpened()/read() interface for drop-in replacement on native Linux.
+          </li>
+          <li>
+            Designed an image-to-workspace coordinate mapping that converts normalized MediaPipe positions [0,1]² to robot Cartesian meters: wrist X maps to ±EE lateral reach, wrist Y (inverted) maps to EE height, and wrist-to-finger angle maps to ±90° EE yaw: all with configurable workspace bounds.
+          </li>
+          <li>
+            Configured the SRDF with precise disabled collision pairs, suppressing adjacent-link false positives while keeping distal cross-arm pairs fully active, so MoveIt correctly rejects any IK solution where the two arms would intersect each other.
+          </li>
+          <li>
+            Used a MultiThreadedExecutor with ReentrantCallbackGroup so left-arm and right-arm subscription callbacks run concurrently, preventing an IK call on one arm from blocking teleoperation updates on the other.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: GITHUB ── -->
+    <section class="proj-report">
+      <a href="https://github.com/Mandar117/dual-arm-hand-teleop" target="_blank" rel="noreferrer">GitHub Repo</a>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Mandar Deshmukh</div>
+      <div class="footer__links">
+        <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
+        <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
