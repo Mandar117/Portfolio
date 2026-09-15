@@ -88,12 +88,13 @@
 
           <div class="cards">
             <article class="card">
-              <h3 class="card__title">AutoBot: Autonomous Car Navigation System</h3>
+              <h3 class="card__title">ROS2 Middleware</h3>
               <p class="card__desc">
-                Built an autonomous vehicle using LiDAR + ROS2 on Raspberry Pi: sensor fusion,
-                SLAM, planning, and control with end-to-end latency under 100 ms.
+                Production-grade real-time executor for ROS2 Humble in C++20 — lock-free SPSC ring
+                buffer, ABA-safe memory pool, POSIX SCHED_FIFO scheduling; p99 jitter ≤11µs across
+                95,951 samples.
               </p>
-              <a class="card__link" href="Projects/autobot.html">View Project</a>
+              <a class="card__link" href="Projects/ros2-middleware" data-coming-soon>View Project</a>
             </article>
 
             <article class="card">
@@ -105,29 +106,61 @@
             </article>
 
             <article class="card">
-              <h3 class="card__title">Multi-Modal Robot Learning with Foundation Models</h3>
+              <h3 class="card__title">AutoBot: Autonomous Car Navigation System</h3>
               <p class="card__desc">
-                Training transformer-based policies for language-conditioned manipulation in
-                RoboHive with action chunking.
+                Built an autonomous vehicle using LiDAR + ROS2 on Raspberry Pi: sensor fusion,
+                SLAM, planning, and control with end-to-end latency under 100 ms.
               </p>
-              <a class="card__link" href="Projects/foundation" data-coming-soon>View Project</a>
+              <a class="card__link" href="Projects/autobot.html">View Project</a>
             </article>
 
             <article class="card">
               <h3 class="card__title">Visual SLAM with Object-Aware Mapping</h3>
               <p class="card__desc">
-                Integrated ORB-SLAM3 + YOLOv8-seg for semantic mapping; ~18 FPS with 3–5 cm
-                localization error.
+                Integrated ORB-SLAM3 and YOLOv8-seg for real-time semantic mapping; 3–5cm
+                localization error at 18 FPS on KITTI and TUM with 100% static and 92% dynamic
+                object annotation.
               </p>
               <a class="card__link" href="Projects/vslam" data-coming-soon>View Project</a>
             </article>
 
             <article class="card">
-              <h3 class="card__title">3D Object Detection & Tracking for AVs</h3>
+              <h3 class="card__title">Photorealistic Sensor Sim + Perception Benchmark</h3>
               <p class="card__desc">
-                YOLOv8 + stereo depth for 3D localization; DeepSORT tracking with strong KITTI metrics.
+                Isaac Sim synthetic data pipeline with domain randomization — trains YOLOv8 on
+                sim-only data and benchmarks zero-shot transfer to real camera footage, quantifying
+                sim-to-real mAP gap.
               </p>
-              <a class="card__link" href="Projects/3d" data-coming-soon>View Project</a>
+              <a class="card__link" href="Projects/sensor-sim" data-coming-soon>View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">RL Locomotion Control</h3>
+              <p class="card__desc">
+                Trained SAC agent on MuJoCo HalfCheetah-v5 to mean reward 7,648 with 85%+ success
+                over 1M timesteps; deployed trained policy with sub-10ms GPU inference latency.
+              </p>
+              <a class="card__link" href="Projects/rl-locomotion" data-coming-soon>View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Physics-Accurate Contact Simulation</h3>
+              <p class="card__desc">
+                MuJoCo contact-rich manipulation environment with calibrated stiffness, damping,
+                and friction coefficients validated against real robot measurements; domain
+                randomization over contact parameters for policy transfer evaluation.
+              </p>
+              <a class="card__link" href="Projects/contact-sim" data-coming-soon>View Project</a>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Multi-Camera Extrinsic Calibration Pipeline</h3>
+              <p class="card__desc">
+                Production-grade multi-camera calibration system using ChArUco boards fusing 3+
+                streams into a unified 3D point cloud, with real-time object detection and pose
+                estimation layered on top.
+              </p>
+              <a class="card__link" href="Projects/multi-cam-calibration" data-coming-soon>View Project</a>
             </article>
           </div>
         </div>
