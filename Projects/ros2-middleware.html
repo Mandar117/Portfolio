@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandar Deshmukh — Custom ROS2 Real-Time Middleware</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── HERO: Problem Statement + Meta ── */
+    .proj-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--bg-muted);
+      padding: 0 8%;
+    }
+
+    .proj-hero__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: start;
+      width: 100%;
+    }
+
+    .proj-hero__statement h1 {
+      font-family: var(--serif);
+      font-size: clamp(14px, 1.2vw, 16px);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 0 0 20px 0;
+    }
+
+    .proj-hero__statement p {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 38px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .proj-meta {
+      padding-top: 8px;
+    }
+
+    .proj-meta__block {
+      margin-bottom: 24px;
+    }
+
+    .proj-meta__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .proj-meta__value {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #111;
+    }
+
+    .proj-meta__dates {
+      display: flex;
+      gap: 48px;
+      margin-top: 28px;
+    }
+
+    .proj-meta__dates div {
+      font-family: var(--sans);
+    }
+
+    .proj-meta__dates .proj-meta__label {
+      margin-bottom: 4px;
+    }
+
+    .proj-meta__dates span {
+      font-size: 15px;
+      color: #111;
+    }
+
+    /* ── BULLETS + STAT CARD ── */
+    .proj-bullets {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+    }
+
+    .proj-bullets__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .proj-bullets ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .proj-bullets ul li {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin-bottom: 20px;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .proj-bullets ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #888;
+    }
+
+    /* Headline-number card (replaces a screenshot for a CLI/benchmark project) */
+    .stat-card {
+      background: #111;
+      border-radius: 16px;
+      padding: clamp(28px, 3vw, 40px);
+    }
+
+    .stat-card__intro {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9a9a9a;
+      margin: 0 0 22px 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-item__num {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 36px);
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-item__label {
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #bdbdbd;
+    }
+
+    /* ── FLOWCHART / ARCHITECTURE ── */
+    .proj-arch {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg-muted);
+    }
+
+    .proj-arch__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .proj-arch h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-arch p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 14px 0;
+      max-width: 54ch;
+    }
+
+    /* ── LAYER STACK VISUAL ── */
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .layer-item {
+      background: #f5f5f5;
+      border-left: 3px solid #111;
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .layer-item:hover {
+      background: #ececec;
+    }
+
+    .layer-num {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      min-width: 52px;
+    }
+
+    .layer-text {
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.55;
+      color: #1b1b1b;
+    }
+
+    .layer-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* ── MESSAGE-PATH FLOWCHART ── */
+    .proj-pipeline {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+    }
+
+    .proj-pipeline h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-pipeline > p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 40px 0;
+      max-width: 72ch;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 140px;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding: 18px;
+      border-radius: 12px;
+      background: var(--bg-muted);
+    }
+
+    .flow-box {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+    }
+
+    .flow-mid {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flow-mid__arrow {
+      font-size: 18px;
+      color: #999;
+    }
+
+    .flow-mid__label {
+      flex: 1;
+    }
+
+    .flow-mid__name {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .flow-mid__desc {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #444;
+      max-width: 60ch;
+    }
+
+    .flow-mid__speed {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #117a4e;
+      margin-top: 6px;
+    }
+
+    /* ── GRAPHS / BAR CHARTS ── */
+    .proj-graphs {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg-muted);
+    }
+
+    .proj-graphs h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 500;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .proj-graphs > p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1b1b1b;
+      margin: 0 0 40px 0;
+      max-width: 72ch;
+    }
+
+    .chart-block {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: clamp(24px, 3vw, 36px);
+      margin-bottom: 28px;
+    }
+
+    .chart-block__title {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .chart-block__sub {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .bar-group {
+      margin-bottom: 20px;
+    }
+
+    .bar-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .bar-group__title {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 110px 1fr 90px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 7px;
+    }
+
+    .bar-row__label {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: #333;
+    }
+
+    .bar-track {
+      background: #ececec;
+      border-radius: 6px;
+      height: 16px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+    }
+
+    .bar-fill--stock { background: #c9c9c9; }
+    .bar-fill--rt    { background: #111; }
+    .bar-fill--copy  { background: #c9c9c9; }
+    .bar-fill--shm   { background: #117a4e; }
+
+    .bar-row__value {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: #111;
+      text-align: right;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 24px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .chart-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: #444;
+    }
+
+    .chart-legend__swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    /* ── REPORT BUTTON ── */
+    .proj-report {
+      padding: clamp(60px, 7vw, 100px) 8%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .proj-report a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: #111;
+      border: 1px solid #111;
+      border-radius: 999px;
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .proj-report a:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+      .proj-hero { min-height: unset; padding: 80px 6%; }
+      .proj-hero__grid { grid-template-columns: 1fr; }
+      .proj-bullets { padding: 60px 6%; }
+      .proj-bullets__grid { grid-template-columns: 1fr; }
+      .proj-arch { padding: 60px 6%; }
+      .proj-arch__grid { grid-template-columns: 1fr; }
+      .proj-pipeline { padding: 60px 6%; }
+      .proj-graphs { padding: 60px 6%; }
+      .flow-row { grid-template-columns: 1fr; text-align: left; }
+      .flow-mid { flex-direction: column; align-items: flex-start; }
+      .bar-row { grid-template-columns: 90px 1fr 70px; }
+      .proj-report { padding: 60px 6%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="../index.html">Mandar Deshmukh</a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="../index.html#projects">Projects</a>
+        <a class="nav__link" href="../education.html">Education</a>
+        <a class="nav__link" href="../experience.html">Work Experience</a>
+        <a class="nav__link" href="../extracurriculars.html">Extra-curriculars</a>
+      </nav>
+    </div>
+    <div class="topbar__rule"></div>
+  </header>
+
+  <main>
+
+    <!-- ── SECTION 1: PROBLEM STATEMENT + META ── -->
+    <section class="proj-hero">
+      <div class="proj-hero__grid">
+
+        <div class="proj-hero__statement">
+          <h1>Problem Statement</h1>
+          <p>
+            Robot software needs two things to feel trustworthy: a control loop that runs exactly on time, every time, and a way to move data between programs as fast as possible. The default ROS2 toolkit does both reasonably well — but "reasonably well" isn't good enough when a robot arm is updating 1,000 times a second. This project builds a faster, more predictable communication layer for ROS2 from scratch, in C++, and backs every claim with real, measured numbers instead of assumptions.
+          </p>
+        </div>
+
+        <div class="proj-meta">
+          <div class="proj-meta__block">
+            <div class="proj-meta__label">Tools</div>
+            <div class="proj-meta__value">C++20, ROS 2 Humble, CMake / colcon, Ubuntu 22.04 (WSL2), POSIX Shared Memory, GitHub Actions (CI), Python (pandas, matplotlib)</div>
+          </div>
+          <div class="proj-meta__block">
+            <div class="proj-meta__label">Concepts</div>
+            <div class="proj-meta__value">Real-Time Scheduling, Lock-Free Programming, Shared-Memory Communication, Latency Benchmarking, Systems-Level Debugging</div>
+          </div>
+          <div class="proj-meta__dates">
+            <div>
+              <div class="proj-meta__label">Completed</div>
+              <span>October 2026</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: BULLET POINTS + HEADLINE STATS ── -->
+    <section class="proj-bullets">
+      <div class="proj-bullets__grid">
+        <ul>
+          <li>
+            Built a custom task scheduler ("executor") for ROS2 that wakes up a robot's control loop far more precisely than the standard one — cutting the typical delay from 154 microseconds down to 22 microseconds at 1,000 updates per second, measured across more than 530,000 samples.
+          </li>
+          <li>
+            Designed a direct shared-memory "shortcut" channel that lets two programs on the same robot exchange messages without going through the usual networking stack — about 3x faster when the system is idle, and still fast when the robot's CPU is under heavy load, where the standard approach slows down by roughly 50x.
+          </li>
+          <li>
+            Found and fixed a hidden bug inside ROS2 itself: its built-in timer was quietly running about 9% too fast, because it was reading time from two internal clocks that had silently drifted apart inside the test environment — a bug nobody would notice without specifically instrumenting for it.
+          </li>
+          <li>
+            Wrote 56 automated tests and set up continuous integration (CI), so every change to the code is automatically built, tested, and benchmarked before it counts as "done."
+          </li>
+          <li>
+            Reported every result together with the exact conditions it was measured under — what hardware, what operating-system limitations applied — instead of presenting numbers without context, because an untrustworthy benchmark is worse than no benchmark at all.
+          </li>
+        </ul>
+
+        <div class="stat-card">
+          <div class="stat-card__intro">Headline Results</div>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-item__num">22 µs</div>
+              <div class="stat-item__label">median control-loop delay, vs. 154 µs for the stock ROS2 timer</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__num">3×</div>
+              <div class="stat-item__label">faster message delivery over the custom shared-memory channel</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__num">56</div>
+              <div class="stat-item__label">automated tests, all passing, run on every code change</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__num">530K+</div>
+              <div class="stat-item__label">individual latency samples behind every number on this page</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: ARCHITECTURE (3-LAYER FLOWCHART) ── -->
+    <section class="proj-arch">
+      <div class="proj-arch__grid">
+        <div>
+          <h2>How It's Organized</h2>
+          <p>
+            Rather than one tangled program, the system is split into three layers that stack cleanly on top of each other. Each layer only needs to know about the layer directly beneath it — which means each piece can be built, tested, and trusted completely on its own, before anything is wired together.
+          </p>
+          <p>
+            The bottom layer has no idea it's being used for robotics at all — it's just two very fast, very predictable building blocks. The middle layer connects those building blocks to ROS2. The top layer is the actual experiment: a tool that runs every combination of scheduler and transport automatically, and records exactly what happened.
+          </p>
+        </div>
+        <div class="layer-stack">
+          <div class="layer-item">
+            <span class="layer-num">Layer 1</span>
+            <span class="layer-text"><strong>Foundation — the building blocks</strong>A super-fast queue and a super-fast memory manager, both built to never make the program wait and never ask the operating system for more memory mid-task. No knowledge of robots or ROS2 at all — reusable in any program.</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 2</span>
+            <span class="layer-text"><strong>Middleware — the custom scheduler + transports</strong>The custom executor that wakes the control loop on time, plus the three different ways of sending a message between programs (see the flowchart below).</span>
+          </div>
+          <div class="layer-item">
+            <span class="layer-num">Layer 3</span>
+            <span class="layer-text"><strong>Application — the experiment itself</strong>A benchmarking tool that automatically runs every scheduler × transport × speed combination, and writes out the raw numbers, so every chart on this page comes from a real, repeatable run.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: MESSAGE-PATH FLOWCHART ── -->
+    <section class="proj-pipeline">
+      <h2>Three Ways to Send a Message</h2>
+      <p>
+        Whenever one program needs to tell another "here's the robot's new joint position," it has to choose how that message travels. This project builds and measures all three realistic options side by side, so the comparison is fair — same message, same rate, same machine.
+      </p>
+
+      <div class="flow-row">
+        <div class="flow-box">Publisher</div>
+        <div class="flow-mid">
+          <span class="flow-mid__arrow">→</span>
+          <div class="flow-mid__label">
+            <div class="flow-mid__name">1. Copy (the default)</div>
+            <div class="flow-mid__desc">The message is packaged up and copied through ROS2's normal networking layer. Simple and reliable — but every copy and every network hop costs time.</div>
+          </div>
+          <span class="flow-mid__arrow">→</span>
+        </div>
+        <div class="flow-box">Subscriber</div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-box">Publisher</div>
+        <div class="flow-mid">
+          <span class="flow-mid__arrow">→</span>
+          <div class="flow-mid__label">
+            <div class="flow-mid__name">2. Loaned (borrowed memory)</div>
+            <div class="flow-mid__desc">Instead of copying the message, the publisher asks to write directly into memory the networking layer already owns — skipping a copy, when the underlying software actually supports it.</div>
+          </div>
+          <span class="flow-mid__arrow">→</span>
+        </div>
+        <div class="flow-box">Subscriber</div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-box">Publisher</div>
+        <div class="flow-mid">
+          <span class="flow-mid__arrow">→</span>
+          <div class="flow-mid__label">
+            <div class="flow-mid__name">3. Shared Memory (custom-built)</div>
+            <div class="flow-mid__desc">A direct memory handoff that skips the networking layer entirely. The two programs share one small block of memory; the publisher writes into it and taps the subscriber on the shoulder, instead of going through the network stack at all.</div>
+            <div class="flow-mid__speed">Fastest &amp; most consistent, especially when the system is busy</div>
+          </div>
+          <span class="flow-mid__arrow">→</span>
+        </div>
+        <div class="flow-box">Subscriber</div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: GRAPHS ── -->
+    <section class="proj-graphs">
+      <h2>What the Numbers Actually Show</h2>
+      <p>
+        Every chart below compares "the standard ROS2 way" against "the custom version built in this project," using the exact same workload for both. Shorter bars are better in every chart.
+      </p>
+
+      <div class="chart-block">
+        <div class="chart-block__title">Control-Loop Timing — How Late Is the Wake-Up?</div>
+        <div class="chart-block__sub">Worst-case (99th percentile) delay before the control loop actually starts, at three different update speeds. Lower = more on-time.</div>
+
+        <div class="bar-group">
+          <div class="bar-group__title">100 updates / second</div>
+          <div class="bar-row">
+            <div class="bar-row__label">Standard ROS2</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--stock" style="width:100%"></div></div>
+            <div class="bar-row__value">1036 µs</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-row__label">Custom Executor</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--rt" style="width:10%"></div></div>
+            <div class="bar-row__value">101 µs</div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-group__title">500 updates / second</div>
+          <div class="bar-row">
+            <div class="bar-row__label">Standard ROS2</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--stock" style="width:100%"></div></div>
+            <div class="bar-row__value">286 µs</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-row__label">Custom Executor</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--rt" style="width:20%"></div></div>
+            <div class="bar-row__value">56 µs</div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-group__title">1,000 updates / second</div>
+          <div class="bar-row">
+            <div class="bar-row__label">Standard ROS2</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--stock" style="width:100%"></div></div>
+            <div class="bar-row__value">184 µs</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-row__label">Custom Executor</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--rt" style="width:27%"></div></div>
+            <div class="bar-row__value">49 µs</div>
+          </div>
+        </div>
+
+        <div class="chart-legend">
+          <div class="chart-legend__item"><span class="chart-legend__swatch" style="background:#c9c9c9"></span>Standard ROS2 timer</div>
+          <div class="chart-legend__item"><span class="chart-legend__swatch" style="background:#111"></span>Custom real-time executor</div>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-block__title">Message Delivery Speed — Idle vs. Under Heavy Load</div>
+        <div class="chart-block__sub">Worst-case (99th percentile) delivery time at 1,000 messages/second. "Under load" means 4 background programs were deliberately hammering the CPU at the same time — a stand-in for a busy, real robot.</div>
+
+        <div class="bar-group">
+          <div class="bar-group__title">System idle</div>
+          <div class="bar-row">
+            <div class="bar-row__label">Standard path</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--copy" style="width:100%"></div></div>
+            <div class="bar-row__value">158 µs</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-row__label">Shared Memory</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--shm" style="width:37%"></div></div>
+            <div class="bar-row__value">59 µs</div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <div class="bar-group__title">CPU under heavy load</div>
+          <div class="bar-row">
+            <div class="bar-row__label">Standard path</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--copy" style="width:100%"></div></div>
+            <div class="bar-row__value">3932 µs</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-row__label">Shared Memory</div>
+            <div class="bar-track"><div class="bar-fill bar-fill--shm" style="width:2%"></div></div>
+            <div class="bar-row__value">42 µs</div>
+          </div>
+        </div>
+
+        <div class="chart-legend">
+          <div class="chart-legend__item"><span class="chart-legend__swatch" style="background:#c9c9c9"></span>Standard delivery path</div>
+          <div class="chart-legend__item"><span class="chart-legend__swatch" style="background:#117a4e"></span>Custom shared-memory channel</div>
+        </div>
+      </div>
+
+      <p style="font-family: var(--sans); font-size: 12.5px; line-height: 1.7; color: var(--muted); max-width: 72ch;">
+        Why this second chart matters most: the standard path is fine when the system is quiet, but under real load it gets roughly 50x slower at the worst case — exactly when a robot can least afford it. The shared-memory channel barely notices the load at all, because it doesn't share any of the same background threads the standard path depends on.
+      </p>
+    </section>
+
+    <!-- ── SECTION 6: THE DEBUGGING STORY + HONESTY NOTE ── -->
+    <section class="proj-bullets" style="background: var(--bg-muted);">
+      <div style="max-width: 760px;">
+        <ul>
+          <li>
+            <strong>The clock bug:</strong> early results showed the standard ROS2 timer behaving impossibly — firing too often, with "negative" delay. Instead of assuming a bug in the new code, the investigation worked backwards into ROS2's own internals and found the real cause: the timer was scheduling itself against one internal system clock, but actually waiting against a second, slightly different one. On the test machine those two clocks had drifted about 9% apart, so a "1,000 times a second" timer was really firing about 1,091 times a second. Every benchmark run now automatically measures and reports this drift, so the condition can never quietly distort a result again.
+          </li>
+          <li>
+            <strong>Honesty about test conditions:</strong> all of these numbers come from testing inside a Windows-hosted Linux environment (WSL2), which does not allow the operating system's top-priority scheduling mode to be used. Real robot hardware would likely perform at least as well, probably better — but every number on this page is reported exactly as measured, with its test conditions stated plainly, rather than quietly assuming ideal conditions that weren't actually there.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── SECTION 7: GITHUB ── -->
+    <section class="proj-report">
+      <a href="https://github.com/Mandar117/ros2_rt_middleware" target="_blank" rel="noreferrer">GitHub Repo</a>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Mandar Deshmukh</div>
+      <div class="footer__links">
+        <a href="mailto:MandarMahesh.Deshmukh@colorado.edu">Email</a>
+        <a href="https://www.linkedin.com/in/mandardeshmukh117" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
