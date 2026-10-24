@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mandar Deshmukh — Multi-Sensor 3D Object Detection</title>
+  <title>Mandar Deshmukh: Multi-Sensor 3D Object Detection</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -310,7 +310,7 @@
             Built a full nuScenes data loading pipeline with multi-sweep LiDAR aggregation, ground-truth box parsing, and BEV voxelisation for efficient point cloud preprocessing at scale.
           </li>
           <li>
-            Implemented PointPillars from scratch — including the Pillar Feature Network, BEV scatter operation, and anchor-based detection head — trained end-to-end with focal loss and smooth-L1 regression.
+            Implemented PointPillars from scratch, including the Pillar Feature Network, BEV scatter operation, and anchor-based detection head, trained end-to-end with focal loss and smooth-L1 regression.
           </li>
           <li>
             Integrated a camera baseline using ResNet-50 FPN feature extraction with perspective-to-BEV projection, enabling direct comparison of LiDAR-only vs. camera-only performance.
@@ -319,7 +319,7 @@
             Designed an early-fusion multi-modal architecture combining LiDAR pillars and camera BEV features via channel-wise concatenation, improving mAP on nuScenes mini by a measurable margin over single-modality baselines.
           </li>
           <li>
-            Tracked all experiments with Weights &amp; Biases — logging mAP, NDS, per-class AP, and training curves — ensuring full reproducibility and structured ablation across fusion strategies.
+            Tracked all experiments with Weights &amp; Biases, logging mAP, NDS, per-class AP, and training curves, ensuring full reproducibility and structured ablation across fusion strategies.
           </li>
         </ul>
 
@@ -342,7 +342,7 @@
             In the fusion model, both BEV representations are concatenated channel-wise before being passed into the shared detection head, which predicts class probabilities, 3D bounding box offsets, and heading angles for each anchor.
           </p>
           <p>
-            Evaluation follows the official nuScenes protocol — reporting mean Average Precision (mAP) across distance thresholds and the composite NDS score which also captures velocity and attribute estimation.
+            Evaluation follows the official nuScenes protocol: reporting mean Average Precision (mAP) across distance thresholds and the composite NDS score which also captures velocity and attribute estimation.
           </p>
         </div>
         <div class="proj-arch__image">
@@ -357,7 +357,7 @@
       <div class="proj-bullets__grid">
         <ul>
           <li>
-            Conducted a structured ablation study comparing LiDAR-only, camera-only, and early-fusion models across vehicle, pedestrian, and cyclist classes — quantifying the contribution of each modality.
+            Conducted a structured ablation study comparing LiDAR-only, camera-only, and early-fusion models across vehicle, pedestrian, and cyclist classes, quantifying the contribution of each modality.
           </li>
           <li>
             Applied data augmentation strategies including random flipping, global scaling, and point cloud jitter to improve generalisation and reduce overfitting on the mini split.
@@ -366,7 +366,7 @@
             Optimised the BEV scatter operation using vectorised NumPy operations to achieve sub-second preprocessing per frame on an RTX 3060 GPU.
           </li>
           <li>
-            Maintained a clean, production-quality codebase with modular components, typed interfaces, and full documentation — structured for easy extension to late-fusion and transformer-based architectures in future phases.
+            Maintained a clean, production-quality codebase with modular components, typed interfaces, and full documentation, structured for easy extension to late-fusion and transformer-based architectures in future phases.
           </li>
         </ul>
 

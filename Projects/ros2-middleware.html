@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mandar Deshmukh — Custom ROS2 Real-Time Middleware</title>
+  <title>Mandar Deshmukh: Custom ROS2 Real-Time Middleware</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -514,7 +514,7 @@
         <div class="proj-hero__statement">
           <h1>Problem Statement</h1>
           <p>
-            Robot software needs two things to feel trustworthy: a control loop that runs exactly on time, every time, and a way to move data between programs as fast as possible. The default ROS2 toolkit does both reasonably well — but "reasonably well" isn't good enough when a robot arm is updating 1,000 times a second. This project builds a faster, more predictable communication layer for ROS2 from scratch, in C++, and backs every claim with real, measured numbers instead of assumptions.
+            Robot software needs two things to feel trustworthy: a control loop that runs exactly on time, every time, and a way to move data between programs as fast as possible. The default ROS2 toolkit does both reasonably well, but "reasonably well" isn't good enough when a robot arm is updating 1,000 times a second. This project builds a faster, more predictable communication layer for ROS2 from scratch, in C++, and backs every claim with real, measured numbers instead of assumptions.
           </p>
         </div>
 
@@ -543,19 +543,19 @@
       <div class="proj-bullets__grid">
         <ul>
           <li>
-            Built a custom task scheduler ("executor") for ROS2 that wakes up a robot's control loop far more precisely than the standard one — cutting the typical delay from 154 microseconds down to 22 microseconds at 1,000 updates per second, measured across more than 530,000 samples.
+            Built a custom task scheduler ("executor") for ROS2 that wakes up a robot's control loop far more precisely than the standard one, cutting the typical delay from 154 microseconds down to 22 microseconds at 1,000 updates per second, measured across more than 530,000 samples.
           </li>
           <li>
-            Designed a direct shared-memory "shortcut" channel that lets two programs on the same robot exchange messages without going through the usual networking stack — about 3x faster when the system is idle, and still fast when the robot's CPU is under heavy load, where the standard approach slows down by roughly 50x.
+            Designed a direct shared-memory "shortcut" channel that lets two programs on the same robot exchange messages without going through the usual networking stack, about 3x faster when the system is idle, and still fast when the robot's CPU is under heavy load, where the standard approach slows down by roughly 50x.
           </li>
           <li>
-            Found and fixed a hidden bug inside ROS2 itself: its built-in timer was quietly running about 9% too fast, because it was reading time from two internal clocks that had silently drifted apart inside the test environment — a bug nobody would notice without specifically instrumenting for it.
+            Found and fixed a hidden bug inside ROS2 itself: its built-in timer was quietly running about 9% too fast, because it was reading time from two internal clocks that had silently drifted apart inside the test environment, a bug nobody would notice without specifically instrumenting for it.
           </li>
           <li>
             Wrote 56 automated tests and set up continuous integration (CI), so every change to the code is automatically built, tested, and benchmarked before it counts as "done."
           </li>
           <li>
-            Reported every result together with the exact conditions it was measured under — what hardware, what operating-system limitations applied — instead of presenting numbers without context, because an untrustworthy benchmark is worse than no benchmark at all.
+            Reported every result together with the exact conditions it was measured under: what hardware, what operating-system limitations applied, instead of presenting numbers without context, because an untrustworthy benchmark is worse than no benchmark at all.
           </li>
         </ul>
 
@@ -589,24 +589,24 @@
         <div>
           <h2>How It's Organized</h2>
           <p>
-            Rather than one tangled program, the system is split into three layers that stack cleanly on top of each other. Each layer only needs to know about the layer directly beneath it — which means each piece can be built, tested, and trusted completely on its own, before anything is wired together.
+            Rather than one tangled program, the system is split into three layers that stack cleanly on top of each other. Each layer only needs to know about the layer directly beneath it, which means each piece can be built, tested, and trusted completely on its own, before anything is wired together.
           </p>
           <p>
-            The bottom layer has no idea it's being used for robotics at all — it's just two very fast, very predictable building blocks. The middle layer connects those building blocks to ROS2. The top layer is the actual experiment: a tool that runs every combination of scheduler and transport automatically, and records exactly what happened.
+            The bottom layer has no idea it's being used for robotics at all: it's just two very fast, very predictable building blocks. The middle layer connects those building blocks to ROS2. The top layer is the actual experiment: a tool that runs every combination of scheduler and transport automatically, and records exactly what happened.
           </p>
         </div>
         <div class="layer-stack">
           <div class="layer-item">
             <span class="layer-num">Layer 1</span>
-            <span class="layer-text"><strong>Foundation — the building blocks</strong>A super-fast queue and a super-fast memory manager, both built to never make the program wait and never ask the operating system for more memory mid-task. No knowledge of robots or ROS2 at all — reusable in any program.</span>
+            <span class="layer-text"><strong>Foundation: the building blocks</strong>A super-fast queue and a super-fast memory manager, both built to never make the program wait and never ask the operating system for more memory mid-task. No knowledge of robots or ROS2 at all, reusable in any program.</span>
           </div>
           <div class="layer-item">
             <span class="layer-num">Layer 2</span>
-            <span class="layer-text"><strong>Middleware — the custom scheduler + transports</strong>The custom executor that wakes the control loop on time, plus the three different ways of sending a message between programs (see the flowchart below).</span>
+            <span class="layer-text"><strong>Middleware: the custom scheduler + transports</strong>The custom executor that wakes the control loop on time, plus the three different ways of sending a message between programs (see the flowchart below).</span>
           </div>
           <div class="layer-item">
             <span class="layer-num">Layer 3</span>
-            <span class="layer-text"><strong>Application — the experiment itself</strong>A benchmarking tool that automatically runs every scheduler × transport × speed combination, and writes out the raw numbers, so every chart on this page comes from a real, repeatable run.</span>
+            <span class="layer-text"><strong>Application: the experiment itself</strong>A benchmarking tool that automatically runs every scheduler × transport × speed combination, and writes out the raw numbers, so every chart on this page comes from a real, repeatable run.</span>
           </div>
         </div>
       </div>
@@ -616,7 +616,7 @@
     <section class="proj-pipeline">
       <h2>Three Ways to Send a Message</h2>
       <p>
-        Whenever one program needs to tell another "here's the robot's new joint position," it has to choose how that message travels. This project builds and measures all three realistic options side by side, so the comparison is fair — same message, same rate, same machine.
+        Whenever one program needs to tell another "here's the robot's new joint position," it has to choose how that message travels. This project builds and measures all three realistic options side by side, so the comparison is fair: same message, same rate, same machine.
       </p>
 
       <div class="flow-row">
@@ -625,7 +625,7 @@
           <span class="flow-mid__arrow">→</span>
           <div class="flow-mid__label">
             <div class="flow-mid__name">1. Copy (the default)</div>
-            <div class="flow-mid__desc">The message is packaged up and copied through ROS2's normal networking layer. Simple and reliable — but every copy and every network hop costs time.</div>
+            <div class="flow-mid__desc">The message is packaged up and copied through ROS2's normal networking layer. Simple and reliable, but every copy and every network hop costs time.</div>
           </div>
           <span class="flow-mid__arrow">→</span>
         </div>
@@ -638,7 +638,7 @@
           <span class="flow-mid__arrow">→</span>
           <div class="flow-mid__label">
             <div class="flow-mid__name">2. Loaned (borrowed memory)</div>
-            <div class="flow-mid__desc">Instead of copying the message, the publisher asks to write directly into memory the networking layer already owns — skipping a copy, when the underlying software actually supports it.</div>
+            <div class="flow-mid__desc">Instead of copying the message, the publisher asks to write directly into memory the networking layer already owns, skipping a copy, when the underlying software actually supports it.</div>
           </div>
           <span class="flow-mid__arrow">→</span>
         </div>
@@ -668,7 +668,7 @@
       </p>
 
       <div class="chart-block">
-        <div class="chart-block__title">Control-Loop Timing — How Late Is the Wake-Up?</div>
+        <div class="chart-block__title">Control-Loop Timing: How Late Is the Wake-Up?</div>
         <div class="chart-block__sub">Worst-case (99th percentile) delay before the control loop actually starts, at three different update speeds. Lower = more on-time.</div>
 
         <div class="bar-group">
@@ -720,8 +720,8 @@
       </div>
 
       <div class="chart-block">
-        <div class="chart-block__title">Message Delivery Speed — Idle vs. Under Heavy Load</div>
-        <div class="chart-block__sub">Worst-case (99th percentile) delivery time at 1,000 messages/second. "Under load" means 4 background programs were deliberately hammering the CPU at the same time — a stand-in for a busy, real robot.</div>
+        <div class="chart-block__title">Message Delivery Speed: Idle vs. Under Heavy Load</div>
+        <div class="chart-block__sub">Worst-case (99th percentile) delivery time at 1,000 messages/second. "Under load" means 4 background programs were deliberately hammering the CPU at the same time, a stand-in for a busy, real robot.</div>
 
         <div class="bar-group">
           <div class="bar-group__title">System idle</div>
@@ -758,7 +758,7 @@
       </div>
 
       <p style="font-family: var(--sans); font-size: 12.5px; line-height: 1.7; color: var(--muted); max-width: 72ch;">
-        Why this second chart matters most: the standard path is fine when the system is quiet, but under real load it gets roughly 50x slower at the worst case — exactly when a robot can least afford it. The shared-memory channel barely notices the load at all, because it doesn't share any of the same background threads the standard path depends on.
+        Why this second chart matters most: the standard path is fine when the system is quiet, but under real load it gets roughly 50x slower at the worst case, exactly when a robot can least afford it. The shared-memory channel barely notices the load at all, because it doesn't share any of the same background threads the standard path depends on.
       </p>
     </section>
 
@@ -767,10 +767,10 @@
       <div style="max-width: 760px;">
         <ul>
           <li>
-            <strong>The clock bug:</strong> early results showed the standard ROS2 timer behaving impossibly — firing too often, with "negative" delay. Instead of assuming a bug in the new code, the investigation worked backwards into ROS2's own internals and found the real cause: the timer was scheduling itself against one internal system clock, but actually waiting against a second, slightly different one. On the test machine those two clocks had drifted about 9% apart, so a "1,000 times a second" timer was really firing about 1,091 times a second. Every benchmark run now automatically measures and reports this drift, so the condition can never quietly distort a result again.
+            <strong>The clock bug:</strong> early results showed the standard ROS2 timer behaving impossibly: firing too often, with "negative" delay. Instead of assuming a bug in the new code, the investigation worked backwards into ROS2's own internals and found the real cause: the timer was scheduling itself against one internal system clock, but actually waiting against a second, slightly different one. On the test machine those two clocks had drifted about 9% apart, so a "1,000 times a second" timer was really firing about 1,091 times a second. Every benchmark run now automatically measures and reports this drift, so the condition can never quietly distort a result again.
           </li>
           <li>
-            <strong>Honesty about test conditions:</strong> all of these numbers come from testing inside a Windows-hosted Linux environment (WSL2), which does not allow the operating system's top-priority scheduling mode to be used. Real robot hardware would likely perform at least as well, probably better — but every number on this page is reported exactly as measured, with its test conditions stated plainly, rather than quietly assuming ideal conditions that weren't actually there.
+            <strong>Honesty about test conditions:</strong> all of these numbers come from testing inside a Windows-hosted Linux environment (WSL2), which does not allow the operating system's top-priority scheduling mode to be used. Real robot hardware would likely perform at least as well, probably better, but every number on this page is reported exactly as measured, with its test conditions stated plainly, rather than quietly assuming ideal conditions that weren't actually there.
           </li>
         </ul>
       </div>
