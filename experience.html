@@ -238,6 +238,70 @@
   </header>
 
 
+<!-- ════════════════════ VOSYN: LOGO / INTRO ════════════════════ -->
+<section class="split-section">
+
+  <div class="split-text">
+    <h1>ML Engineer, Vosyn Inc. (Aug 2026 – Present)</h1>
+
+    <p>
+      Building production serving infrastructure and evaluation pipelines for large text-to-speech
+      models at Vosyn's Eclipse voice-cloning team. Designed a persistent-serving HTTP inference API,
+      an async concurrency-aware load-testing client, and automated benchmarking tooling, validated
+      end-to-end on real GPU and CPU cloud hardware.
+    </p>
+
+    <div class="split-meta">
+      <strong>Role:</strong> Machine Learning Engineer<br>
+      <strong>Team:</strong> Eclipse Pod, Voice Cloning / TTS<br>
+      <strong>Tools:</strong> Python, FastAPI, PyTorch, asyncio, httpx, faster-whisper, Git, GCP Compute Engine<br>
+      <strong>Concepts:</strong> Production Model Serving, Concurrency &amp; Load Testing, Real-time Inference Optimization, ASR-based Evaluation, Resource Monitoring, Benchmark Pipeline Automation
+    </div>
+  </div>
+
+  <div class="split-image">
+    <img src="./assets/vosyn-logo.jpg" alt="Vosyn Inc.">
+  </div>
+
+</section>
+
+<!-- ════════════════════ VOSYN: DETAIL ════════════════════ -->
+<!-- Logo is on the RIGHT → photos go on the LEFT -->
+<section class="detail-section detail-section--alt">
+
+  <div class="detail-photos">
+    <img src="./assets/vosyn-1.webp" alt="Vosyn TTS serving architecture diagram" class="detail-photo" style="aspect-ratio: 4/5; object-position: right center;">
+    <img src="./assets/vosyn-2.webp" alt="Vosyn benchmark report chart" class="detail-photo" style="aspect-ratio: 4/5;">
+  </div>
+
+  <div class="detail-content">
+    <span class="detail-eyebrow">Project Brief</span>
+
+    <div class="star-block">
+      <div class="star-label">Situation</div>
+      <p class="star-text">TTS models at Vosyn were evaluated through one-off scripts with no persistent serving layer, making it impossible to measure real request latency under concurrent load or systematically verify intelligibility regressions.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Task</div>
+      <p class="star-text">Design and build a production-style HTTP inference API for a large open-weight TTS model, with automated load testing, before/after benchmarking, and an independent ASR-based evaluation pipeline for measuring output quality against a frozen benchmark.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Action</div>
+      <p class="star-text">Built a FastAPI serving layer with persistent vs. reload-per-request modes, thread-safe locking around shared model state, and true chunked streaming responses; built an async, concurrency-parameterized HTTP load-testing client and an automated report generator; diagnosed and fixed two real concurrency bugs (an event-loop-blocking inference call, and a lock released before the critical section it was meant to guard) using GPU/CPU resource monitoring tied to root-cause diagnosis; built a faster-whisper + jiwer character-error-rate scoring pipeline against a hash-verified, versioned benchmark set.</p>
+    </div>
+
+    <div class="star-block">
+      <div class="star-label">Result</div>
+      <p class="star-text">Delivered a reproducible, real-hardware-validated serving and benchmarking pipeline across GPU and CPU cloud instances, measuring real speedups from persistent model serving (~1.36x) and streaming response delivery (~10.8x reduction in time-to-first-audio) over their respective baselines. The concurrency-safety debugging, resource-aware latency profiling, and real-time serving architecture translate directly to latency-constrained robotics systems: real-time control loops, concurrent sensor/service pipelines, and hardware-in-the-loop benchmarking.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
 <!-- ════════════════════ HIRO LAB: LOGO / INTRO ════════════════════ -->
 <section class="split-section">
 
